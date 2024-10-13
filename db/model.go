@@ -1,7 +1,11 @@
 package db
 
+import (
+	"gorm.io/gorm"
+)
+
 type Student struct {
-	id         int
+	gorm.Model
 	first_name string
 	last_name  string
 	college    string

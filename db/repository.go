@@ -1,8 +1,11 @@
 package db
 
+import (
+	"gorm.io/gorm"
+)
+
 func CreateStudent(fname, lname, coll, cour string) *Student {
 	return &Student{
-		id:         0,
 		first_name: fname,
 		last_name:  lname,
 		college:    coll,
@@ -11,3 +14,21 @@ func CreateStudent(fname, lname, coll, cour string) *Student {
 		following:  1,
 	}
 }
+
+var db, err = gorm.Open()
+
+func MigrateDB() {
+	if err != nil {
+		panic("Failed to connect to te database :(")
+	}
+
+	db.AutoMigrate(&Student{})
+}
+
+// func GetStudent(fname string) *Student {
+
+// }
+
+// func GetAllStudents() []Student {
+
+// }
